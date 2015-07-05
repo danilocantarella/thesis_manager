@@ -1,0 +1,24 @@
+<h1>Listing professors</h1>
+ 
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Cognome</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Ufficio</th>
+    
+  </tr>
+ 
+  <% @professors.each do |professor| %>
+    <tr>
+      <td><%= professor.id %></td>
+      <td><%= professor.nome %></td>
+      <td><%= professor.cognome %></td>
+      <td><%= professor.email %></td>
+      <td><%= professor.password %></td>
+      <td><%= professor.ufficio %></td>
+      </tr>
+  <% end %>
+</table>
