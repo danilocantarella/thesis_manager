@@ -1,1 +1,120 @@
-<div class="alert alert-info">Qua ci va tutta la lista delle tesi disponibli</div>
+<div class="row">
+
+	<div class="col-md-10 col-md-offset-1">
+
+
+		<div id="loginbox" style="margin-top:50px;" class="mainbox">  
+
+			<% flash.each do |key, value| %>
+			<div style ="margin-top: -40px" class="alert alert-<%= key %>"><%= value %></div>
+			<% end %>
+
+			<div class="panel panel-info" >
+				<div class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+					<div class="panel-title">Login</strong></div>
+				</div> 
+
+				<div class="row">
+
+					<div class="col-md-6">    
+
+						<div style="padding-top:20px" class="panel-body" >
+
+							<div style="color:#337ab7; margin-bottom:20px"><b>Login professore</b></div>
+
+							<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+							<%= form_for(:session, url: sessions_path) do |f| %>
+
+							<div style="margin-bottom: 25px" class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+								<%= f.email_field :email, class: 'form-control', :placeholder => "email", :required => true  %>                                        
+							</div>
+
+							<div style="margin-bottom: 25px" class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+								<%= f.password_field :password, class: 'form-control', :placeholder => "password", :required => true  %>
+							</div>
+
+
+							<div style="margin-top:10px" class="form-group">
+								<!-- Button -->
+
+								<div class="col-sm-12 controls">
+									<%= f.submit "Login", class: "btn btn-primary" %>
+									<% end %>
+
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<div class="col-md-12 control">
+									<div style="margin-top: 15px; border-top: 1px dotted #888; padding-top:15px; font-size:85%" >
+										Non hai un account da professore?
+
+										<%= link_to 'Registrati!', signup_url %>
+
+									</div>
+								</div>
+							</div>    
+
+						</div>
+					</div>
+
+
+					<div class="col-md-6" style="border-left:1px #337ab7 solid; ">    
+
+						<div style="padding-top:20px" class="panel-body" >
+
+							<div style="color:#337ab7; margin-bottom:20px"><b>Login studente</b></div>
+
+							<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+							<%= form_for(:session, url: sessions_path) do |f| %>
+
+							<div style="margin-bottom: 25px" class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+								<%= f.email_field :email, class: 'form-control', :placeholder => "email", :required => true  %>                                        
+							</div>
+
+							<div style="margin-bottom: 25px" class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+								<%= f.password_field :password, class: 'form-control', :placeholder => "password", :required => true  %>
+							</div>
+
+
+							<div style="margin-top:10px" class="form-group">
+								<!-- Button -->
+
+								<div class="col-sm-12 controls">
+									<%= f.submit "Login", class: "btn btn-primary" %>
+									<% end %>
+
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<div class="col-md-12 control">
+									<div style="margin-top: 15px; border-top: 1px dotted #888; padding-top:15px; font-size:85%" >
+										Non hai un account da studente?
+
+										<%= link_to 'Registrati!', signup_url %>
+
+									</div>
+								</div>
+							</div>    
+
+						</div>
+					</div>
+
+
+				</div>                     
+			</div>  
+		</div>
+
+	</div>
+
+</div>
+

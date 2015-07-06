@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
       # Log the user in and redirect to the user's show page.
       #flash.now[:danger] = "Invalid email/password combination"
       #render :new
-      flash[:danger] = "Email/password non corretti."
-      redirect_to login_url
+      flash[:danger] = "Combinazione email/password non corretta."
+      redirect_to root_url
+      #redirect_to login_url
       #redirect_to :controller => 'welcome', :action => 'index'
     else
       sign_in professor
