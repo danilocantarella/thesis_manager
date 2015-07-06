@@ -15,15 +15,16 @@ class StudentsController < ApplicationController
   		@student = Student.find(params[:id])
   	end
 
-  	def create
-  		#render plain: params[:student].inspect
-  		@student = Student.new(student_params)
-		  if @student.save
-    		redirect_to @student
-  		else
-    		render 'new'
-  		end
-  	end
+  def create
+    @studebt = Student.new(student_params)
+    if @student.save
+      flash[:success] = "Registrazione avvenuta correttamente. Effettua il login."
+      redirect_to login_url
+    else
+      flash.now[:danger] = "Riempi correttamente tutti i campi."
+      render action: "new"
+    end
+  end
 
     def update
       @student = Student.find(params[:id])

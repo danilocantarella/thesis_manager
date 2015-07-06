@@ -1,8 +1,8 @@
-class SessionsStudentsController < ApplicationController
+class SessionsStudentsControllerController < ApplicationController
 	def new
-  end
+  	end
 
-  def create
+  	def create
     student = Student.authenticate(params[:session][:email], params[:session][:password])
     if student.nil?
       # Log the user in and redirect to the user's show page.

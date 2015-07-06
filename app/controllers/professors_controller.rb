@@ -3,13 +3,13 @@ class ProfessorsController < ApplicationController
 		@professors = Professor.all
 	end
 
-	def new
-	end
-
-	
 	def show
 		@professor = Professor.find(params[:id])
 	end
+	
+	def new
+	end
+
 
 	def create
 		@professor = Professor.new(professor_params)
