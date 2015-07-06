@@ -56,20 +56,30 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                   
+                   <% if !signed_in_student? && !signed_in? %>
                     <li>
                         <%= link_to "Registrazione", signup_professor_url%>
                     </li>
-
+                    <% else %>
                      <li>
-                        <%= link_to "Login", root_url%>
+                        <% if signed_in? %>
+                        <%= link_to "Logout", logout_professor_url %>
+                        <% else %>
+                        <%= link_to "Logout", logout_student_url %>
+                        <% end %>
                     </li>
+                    <%end%>
                   
                     <li>
                         <a href="#">Contact</a>
                     </li>
+
                 </ul>
+
+               
             </div>
+
+
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :students #questo crea 6 differenti routes mappando il controller
   resources :professors
+  resources :arguments
   
   resources :sessions, only:[:new, :create, :destroy]
   resources :sessions_students, only:[:new, :create, :destroy]
@@ -16,11 +17,16 @@ Rails.application.routes.draw do
   get 'login_student', to: 'sessions_students#new', as: 'login_student'
   get 'logout_student', to: 'sessions_students#destroy', as: 'logout_student'
 
+  get 'signup_thesi', to: 'thesis#new', as: 'signup_thesi'
+
+  get 'thesis/:id' => 'thesis#show'
+  get '/thesis(.:format)' => 'thesis#index'
+
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'
   get '/students(.:format)' => 'students#index'
 
-  get 'professors(.:format)' => 'professors#new'
+  #get 'professors(.:format)' => 'professors#new'
   get 'professors/:id' => 'professors#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
