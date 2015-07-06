@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   
   resources :sessions, only:[:new, :create, :destroy]
 
-  get 'signup', to: 'professors#new', as: 'signup'
+  get 'signup_professor', to: 'professors#new', as: 'signup_professor'
+  get 'signup_student', to: 'students#new', as: 'signup_student'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 

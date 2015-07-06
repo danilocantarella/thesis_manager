@@ -1,12 +1,7 @@
-<p>
-  <strong>Name:</strong>
-  <%= @student.name %>
-</p>
- 
-<p>
-  <strong>Surname:</strong>
-  <%= @student.surname %>
-</p>
+<% if signed_in? %>
+<div class="alert alert-info">Benvenuto <strong><%= @student.nome %> <%= @student.cognome %></strong></div>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Torna indietro', students_path %>
+<%= link_to "Logout", logout_url,  class: "btn btn-primary" %>
+<% else %>
+<%= link_to "Login", new_session_path, class: "btn btn-primary" %>
+<% end %>

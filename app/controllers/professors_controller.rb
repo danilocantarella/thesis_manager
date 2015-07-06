@@ -6,6 +6,11 @@ class ProfessorsController < ApplicationController
 	def new
 	end
 
+	
+	def show
+		@professor = Professor.find(params[:id])
+	end
+
 	def create
 		@professor = Professor.new(professor_params)
 		if @professor.save
@@ -17,9 +22,6 @@ class ProfessorsController < ApplicationController
 		end
 	end
 
-	def show
-		@professor = Professor.find(params[:id])
-	end
 
 	def registrazione
 	end
