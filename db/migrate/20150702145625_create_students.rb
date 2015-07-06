@@ -4,6 +4,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :nome
       t.string :cognome
       t.string :email
+      t.string :matricola
       t.string :encrypted_password
       t.string :salt
       t.timestamps

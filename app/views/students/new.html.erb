@@ -26,6 +26,11 @@
         </div>
 
         <div style="margin-bottom: 25px" class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+          <%= f.text_field :matricola, class: 'form-control', :placeholder => "matricola", :required => true %>                                        
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
           <%= f.email_field :email, class: 'form-control', :placeholder => "email", :required => true %>                                        
         </div>

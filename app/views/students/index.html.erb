@@ -4,13 +4,15 @@
   <tr>
     <th>Nome</th>
     <th>Cognome</th>
+    <th>Email</th>
     <th colspan="3"></th>
   </tr>
  
   <% @students.each do |student| %>
     <tr>
-      <td><%= student.name %></td>
-      <td><%= student.surname %></td>
+      <td><%= student.nome %></td>
+      <td><%= student.cognome %></td>
+      <td><%= student.email %></td>
       <td><%= link_to 'Mostra', student_path(student) %></td>
       <td><%= link_to 'Modifica', edit_student_path(student) %></td>
       <td><%= link_to 'Cancella', student_path(student),

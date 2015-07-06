@@ -15,7 +15,7 @@ class ProfessorsController < ApplicationController
 		@professor = Professor.new(professor_params)
 		if @professor.save
 			flash[:success] = "Registrazione avvenuta correttamente. Effettua il login."
-			redirect_to login_url
+			redirect_to root_url
 		else
 			flash.now[:danger] = "Riempi correttamente tutti i campi."
 			render action: "new"

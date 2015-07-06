@@ -25,8 +25,12 @@ ActiveRecord::Schema.define(version: 20150705093619) do
   end
 
   create_table "students", force: true do |t|
-    t.text     "name"
-    t.text     "surname"
+    t.string   "nome"
+    t.string   "cognome"
+    t.string   "email"
+    t.string   "matricola"
+    t.string   "encrypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

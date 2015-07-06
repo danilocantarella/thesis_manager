@@ -16,10 +16,10 @@ class StudentsController < ApplicationController
   	end
 
   def create
-    @studebt = Student.new(student_params)
+    @student = Student.new(student_params)
     if @student.save
       flash[:success] = "Registrazione avvenuta correttamente. Effettua il login."
-      redirect_to login_url
+      redirect_to root_url
     else
       flash.now[:danger] = "Riempi correttamente tutti i campi."
       render action: "new"
@@ -48,6 +48,6 @@ class StudentsController < ApplicationController
 
   	private
 	  def student_params
-	    params.require(:student).permit(:name, :surname)
+	    params.require(:student).permit(:nome, :cognome, :email, :matricola, :password, :password_confirmation)
 	  end
 end

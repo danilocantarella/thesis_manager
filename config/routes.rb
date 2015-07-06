@@ -7,13 +7,14 @@ Rails.application.routes.draw do
   resources :professors
   
   resources :sessions, only:[:new, :create, :destroy]
+  resources :sessions_students, only:[:new, :create, :destroy]
 
   get 'signup_professor', to: 'professors#new', as: 'signup_professor'
   get 'signup_student', to: 'students#new', as: 'signup_student'
   get 'login_professor', to: 'sessions#new', as: 'login_professor'
   get 'logout_professor', to: 'sessions#destroy', as: 'logout_professor'
-  get 'login_student', to: 'sessions_students#new', as: 'login_professor'
-  get 'logout_student', to: 'sessions_students#destroy', as: 'logout_professor'
+  get 'login_student', to: 'sessions_students#new', as: 'login_student'
+  get 'logout_student', to: 'sessions_students#destroy', as: 'logout_student'
 
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'

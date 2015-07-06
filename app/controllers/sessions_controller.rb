@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     #professor = current_professor
     sign_out
     flash[:success] = "Logout eseguito con successo."
-    redirect_to login_url
+    redirect_to root_url
     #redirect_to :controller => 'sessions', :action => 'new', alert:"Successo"
   end
 end
