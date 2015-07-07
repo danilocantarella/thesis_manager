@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
       #redirect_to :controller => 'welcome', :action => 'index'
     else
       sign_in professor
-      redirect_to professor #vado allo show così
+      #redirect_to professor #vado allo show così
+      redirect_to root_url
     end
   end
 

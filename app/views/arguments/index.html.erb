@@ -1,20 +1,62 @@
-<h1>Listing arguments</h1>
- 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>titolo</th>
-    <th>descrizione</th>
-    
-    
-  </tr>
- 
-  <% @arguments.each do |argument| %>
-    <tr>
-      <td><%= argument.id %></td>
-      <td><%= argument.titolo %></td>
-      <td><%= argument.descrizione %></td>
-     
+<% if !signed_in_student? && !signed_in? %>
+
+<div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
+
+<% else %>
+
+<% if signed_in? %>
+<% @professor = current_professor %>
+<% elsif signed_in_student? %>
+
+<% @student = current_student %>
+<% end %>
+
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<% if signed_in? %>
+
+<div class="panel panel-info" >
+  <table class="table table-hover">
+
+    <thead>
+      <tr class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+        <th>#</th>
+        <th>Titolo</th>
+        <th>Descrizione</th>
+        <th>Tipologia</th>
+        <th>Interessati</th>
+        <th>Stato</th>
       </tr>
-  <% end %>
-</table>
+    </thead>
+
+    <tbody>
+
+      <% @arguments = @professor.arguments %>
+      <% @arguments.each do |argument| %>
+      <tr>
+        <th scope="row"><%= argument.id %></th>
+        <td><%= argument.titolo %></td>
+        <td><%= argument.descrizione %></td>
+        <td><%= argument.tipologia %></td>
+        <td><%= argument.interessati %></td>
+        <% stato = argument.stato %>
+        <% if stato == "Libera" %>
+        <td style="color: green"><%= argument.stato %></td>
+        <% elsif stato == "Assegnata" %>
+        <td style="color: red"><%= argument.stato %></td>
+        <% end %>
+      </tr>
+      <% end %>
+
+
+    </tbody>
+
+  </table>
+</div>
+
+<% end %>
+
+<%end%>
+

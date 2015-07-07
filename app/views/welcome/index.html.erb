@@ -120,15 +120,64 @@
 
 </div>
 
-<% elsif signed_in? %>
+<% else %>
 
-<% @professor = current_professor %>
-<div class="alert alert-info">Loggato come Prof. <strong><%= @professor.nome %> <%= @professor.cognome %></strong></div>
 
-<% elsif signed_in_student? %>
 
-<% @student = current_student %>
-<div class="alert alert-info">Loggato come studente <strong><%= @student.nome %> <%= @student.cognome %></strong></div>
+	<% if signed_in? %>
+		<% @professor = current_professor %>
+	<% elsif signed_in_student? %>
+
+		<% @student = current_student %>
+	<% end %>
+
+	<% flash.each do |key, value| %>
+			<div class="alert alert-<%= key %>"><%= value %></div>
+	<% end %>
+
+
+<% @arguments = Argument.order("id DESC").all %>
+<div class="panel panel-info" >
+<table class="table table-hover">
+
+<thead>
+        <tr class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+          <th>#</th>
+          <th>Titolo</th>
+          <th>Descrizione</th>
+          <th>Tipologia</th>
+          <th>Interessati</th>
+          <th>Professore</th>
+          <th>Stato</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+
+		<% @arguments.each do |argument| %>
+		<% professor = Professor.find(argument.professor_id) %>
+	    <tr>
+	      <th scope="row"><%= argument.id %></th>
+	      <td><%= argument.titolo %></td>
+	      <td><%= argument.descrizione %></td>
+	      <td><%= argument.tipologia %></td>
+	      <td><%= argument.interessati %></td>
+	      <td><%= professor.nome %> <%= professor.cognome %></td>
+	      <% stato = argument.stato %>
+	      <% if stato == "Libera" %>
+			<td style="color: green"><%= argument.stato %></td>
+	     <% elsif stato == "Assegnata" %>
+	     	<td style="color: red"><%= argument.stato %></td>
+	     	<% end %>
+	      </tr>
+	  	<% end %>
+ 	
+       
+      </tbody>
+
+      </table>
+  </div>
 
 <%end%>
 

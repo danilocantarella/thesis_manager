@@ -13,7 +13,8 @@ class SessionsStudentsController < ApplicationController
       #redirect_to :controller => 'welcome', :action => 'index'
     else
       sign_in_student student
-      redirect_to student #vado allo show così
+      #redirect_to student #vado allo show così
+      redirect_to root_url
     end
   end
 
