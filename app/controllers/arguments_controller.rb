@@ -1,11 +1,10 @@
 class ArgumentsController < ApplicationController
 	def index
-		@professor = Professor.find(current_professor.id)
-		@arguments = @professor.arguments.all
+
 	end
 
 	def show
-		@professor = Professor.find(params[:professor_id])
+		@professor = Professor.find(current_professor.id)
 		@arguments = @professor.arguments.all
 	end
 

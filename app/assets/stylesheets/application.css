@@ -52,6 +52,24 @@
    color: #337ab7;
 }
 
+.welcome {
+    color: #FFFFFF;
+  background-color: #337ab7;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  float:right;
+  margin-right:0px;
+}
+
+.welcome a{
+    color: #FFFFFF;
+  background-color: #337ab7;
+}
+
+.welcome a:hover {
+   text-decoration: underline;
+}
+
 .panel-heading2 {
   color: #FFFFFF;
   background-color: #337ab7;
