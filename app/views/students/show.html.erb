@@ -1,7 +1,44 @@
-<% if signed_in_student? %>
-<div class="alert alert-info">Benvenuto <strong><%= @student.nome %> <%= @student.cognome %></strong></div>
+	<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<% if signed_in_student? %>
+	  <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+		<div class="panel panel-info" >
+						<div class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+							<div class="panel-title">Profilo Studente</strong></div>
+						</div> 
 
-<%= link_to "Logout", logout_student_url,  class: "btn btn-primary" %>
-<% else %>
-<%= link_to "Login", root_url, class: "btn btn-primary" %>
-<% end %>
+						<div class="row">
+	                <div class=" col-md-10 col-lg-10 col-md-offset-1" > 
+	                  <table class="table table-user-information" align="center">
+	                    <tbody>
+	                      <tr>
+	                        <td><strong>Nome</strong></td>
+	                        <td><%= @student.nome %></td>
+	                      </tr>
+	                      <tr>
+	                        <td><strong>Cognome</strong></td>
+	                        <td><%= @student.cognome %></td>
+	                      </tr>
+	                      <tr>
+	                        <td><strong>Matricola</strong></td>
+	                        <td><%= @student.matricola %></td>
+	                      </tr>
+	                      <tr>
+	                        <td><strong>Email</strong></td>
+	                        <td><a href=mailto:<%= @student.email %>><%= @student.email %></a></td>
+	                      </tr>
+	                    </tbody>
+	                  </table>
+	                  
+	                  <%= link_to "Edit", edit_studente_url, class: "btn btn-primary" %>
+
+	                </div>
+	              </div>
+		</div>
+	<div>
+	 
+	<% else %>
+	<%= link_to "Login", root_url, class: "btn btn-primary" %>
+	<% end %>
+</div>

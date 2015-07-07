@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
 	end
 
 	def show
-    	@student = Student.find(params[:id])
+    	@student = Student.find(current_student.id)
   	end
 
 	def new
@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
   	end
 
   	def edit
-  		@student = Student.find(params[:id])
+  		@student = Student.find(current_student.id)
   	end
 
   def create
@@ -27,11 +27,13 @@ class StudentsController < ApplicationController
   end
 
     def update
-      @student = Student.find(params[:id])
+      @student = Student.find(current_student.id)
      
       if @student.update(student_params)
+        flash[:success] = "Modifica avvenuta correttamente."
         redirect_to @student
       else
+        flash.now[:danger] = "Riempi correttamente tutti i campi."
         render 'edit'
       end
     end

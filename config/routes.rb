@@ -18,9 +18,13 @@ Rails.application.routes.draw do
   get 'login_student', to: 'sessions_students#new', as: 'login_student'
   get 'logout_student', to: 'sessions_students#destroy', as: 'logout_student'
 
+
   get 'inserimento_tesi', to: 'arguments#new', as: 'inserimento_tesi'
   get 'mie_tesi', to: 'arguments#index', as: 'mie_tesi'
   get 'profilo_professore', to: 'professors#show', as: 'profilo_professore'
+
+  get 'profilo_studente', to: 'students#show', as: 'profilo_studente'
+  get 'edit_studente', to: 'students#edit', as: 'edit_studente'
 
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'
