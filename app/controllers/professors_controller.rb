@@ -4,11 +4,17 @@ class ProfessorsController < ApplicationController
 	end
 
 	def show
-		@professor = Professor.find(current_professor.id)
+		if signed_in?
+			@professor = Professor.find(current_professor.id)
+		end
 	end
 	
 	def new
 	end
+
+	def edit
+  		@professor = Professor.find(current_professor.id)
+  	end
 
 
 	def create
@@ -23,8 +29,17 @@ class ProfessorsController < ApplicationController
 	end
 
 
-	def registrazione
-	end
+	def update
+      @professor = Professor.find(current_professor.id)
+     
+      if @professor.update(professor_params)
+        flash[:success] = "Modifica avvenuta correttamente."
+        redirect_to @professor
+      else
+        flash.now[:danger] = "Riempi correttamente tutti i campi."
+        render 'edit'
+      end
+    end
 
 	private
 	  ## Strong Parameters 

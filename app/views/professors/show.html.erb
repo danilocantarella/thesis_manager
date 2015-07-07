@@ -1,7 +1,44 @@
-<% if signed_in? %>
-<div class="alert alert-info">Benvenuto <strong><%= @professor.nome %> <%= @professor.cognome %></strong></div>
+	<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<% if signed_in? %>
+		<% flash.each do |key, value| %>
+		<div class="alert alert-<%= key %>"><%= value %></div>
+		<% end %>
+		<div class="panel panel-info" >
+			<div class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+				<div class="panel-title">Profilo Professore</strong></div>
+			</div> 
 
-<%= link_to "Logout", logout_professor_url,  class: "btn btn-primary" %>
-<% else %>
-<%= link_to "Login", root_path, class: "btn btn-primary" %>
-<% end %>
+			<div class="row">
+				<div class=" col-md-10 col-lg-10 col-md-offset-1" > 
+					<table class="table table-user-information" align="center">
+						<tbody>
+							<tr>
+								<td><strong>Nome</strong></td>
+								<td><%= @professor.nome %></td>
+							</tr>
+							<tr>
+								<td><strong>Cognome</strong></td>
+								<td><%= @professor.cognome %></td>
+							</tr>
+							<tr>
+								<td><strong>Ufficio</strong></td>
+								<td><%= @professor.ufficio %></td>
+							</tr>
+							<tr>
+								<td><strong>Email</strong></td>
+								<td><a href=mailto:<%= @professor.email %>><%= @professor.email %></a></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<%= link_to "Edit", edit_professore_url, class: "btn btn-primary" %>
+
+				</div>
+			</div>
+		</div>
+		<div>
+
+			<% else %>
+			<div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
+			<% end %>
+		</div>

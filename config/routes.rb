@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'inserimento_tesi', to: 'arguments#new', as: 'inserimento_tesi'
   get 'mie_tesi', to: 'arguments#index', as: 'mie_tesi'
   get 'profilo_professore', to: 'professors#show', as: 'profilo_professore'
+  get 'edit_professore', to: 'professors#edit', as: 'edit_professore'
 
   get 'profilo_studente', to: 'students#show', as: 'profilo_studente'
   get 'edit_studente', to: 'students#edit', as: 'edit_studente'
