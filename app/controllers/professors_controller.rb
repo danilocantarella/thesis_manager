@@ -4,7 +4,7 @@ class ProfessorsController < ApplicationController
 	end
 
 	def show
-		@professor = Professor.find(params[:id])
+		@professor = Professor.find(current_professor.id)
 	end
 	
 	def new

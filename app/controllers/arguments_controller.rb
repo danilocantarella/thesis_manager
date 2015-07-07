@@ -1,17 +1,21 @@
 class ArgumentsController < ApplicationController
 	def index
-		@arguments = Argument.all
+		@professor = Professor.find(current_professor.id)
+		@arguments = @professor.arguments.all
 	end
 
 	def show
-		@argument = Argument.find(params[:id])
+		@professor = Professor.find(params[:professor_id])
+		@arguments = @professor.arguments.all
 	end
 
 	def new
+		@professor = Professor.find(current_professor.id)
 	end
 
 	def create
-		@argument = Argument.new(argument_params)
+		@professor = Professor.find(params[:professor_id])
+		@argument = @professor.arguments.create(argument_params)
 		if @argument.save
 			flash[:success] = "Inserimento della tesi avvenuto correttamente."
 			redirect_to root_url

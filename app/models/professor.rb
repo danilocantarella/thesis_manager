@@ -1,6 +1,8 @@
 class Professor < ActiveRecord::Base
 	attr_accessor :password
 
+	has_many :arguments
+
 
 	email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i 
 

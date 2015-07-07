@@ -19,9 +19,12 @@ ActiveRecord::Schema.define(version: 20150706162905) do
     t.integer  "interessati"
     t.string   "tipologia"
     t.string   "stato"
+    t.integer  "professor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "arguments", ["professor_id"], name: "index_arguments_on_professor_id"
 
   create_table "professors", force: true do |t|
     t.string   "nome"

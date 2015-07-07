@@ -1,0 +1,20 @@
+<h1>Listing arguments</h1>
+ 
+<table>
+  <tr>
+    <th>ID</th>
+    <th>titolo</th>
+    <th>descrizione</th>
+    
+    
+  </tr>
+ 
+  <% @arguments.each do |argument| %>
+    <tr>
+      <td><%= argument.id %></td>
+      <td><%= argument.titolo %></td>
+      <td><%= argument.descrizione %></td>
+     
+      </tr>
+  <% end %>
+</table>

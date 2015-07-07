@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :students #questo crea 6 differenti routes mappando il controller
-  resources :professors
-  resources :arguments
+  resources :professors do
+    resources :arguments
+  end
   
   resources :sessions, only:[:new, :create, :destroy]
   resources :sessions_students, only:[:new, :create, :destroy]
@@ -17,10 +18,9 @@ Rails.application.routes.draw do
   get 'login_student', to: 'sessions_students#new', as: 'login_student'
   get 'logout_student', to: 'sessions_students#destroy', as: 'logout_student'
 
-  get 'signup_thesi', to: 'thesis#new', as: 'signup_thesi'
-
-  get 'thesis/:id' => 'thesis#show'
-  get '/thesis(.:format)' => 'thesis#index'
+  get 'inserimento_tesi', to: 'arguments#new', as: 'inserimento_tesi'
+  get 'mie_tesi', to: 'arguments#index', as: 'mie_tesi'
+  get 'profilo_professore', to: 'professors#show', as: 'profilo_professore'
 
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'
