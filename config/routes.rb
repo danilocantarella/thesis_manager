@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :arguments
   end
   resources :arguments
+  resources :requests
   
   resources :sessions, only:[:new, :create, :destroy]
   resources :sessions_students, only:[:new, :create, :destroy]
@@ -30,6 +31,8 @@ Rails.application.routes.draw do
 
   get 'visualizza_tesi', to: 'arguments#show', as: 'visualizza_tesi'
   get 'edit_tesi', to: 'arguments#edit', as: 'edit_tesi'
+
+  get 'nuova_richiesta', to: 'requests#new', as: 'nuova_richiesta'
 
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'

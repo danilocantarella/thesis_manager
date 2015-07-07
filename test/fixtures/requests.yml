@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stato: MyString
+  id_student: 1
+  id_argument: 1
+
+two:
+  stato: MyString
+  id_student: 1
+  id_argument: 1

@@ -149,6 +149,7 @@
           <th>Interessati</th>
           <th>Professore</th>
           <th>Stato</th>
+          <th></th>
         </tr>
     </thead>
 
@@ -170,6 +171,9 @@
 	     <% elsif stato == "Assegnata" %>
 	     	<td style="color: red"><%= argument.stato %></td>
 	     	<% end %>
+	     	<td>
+				<%= link_to "Richiedi", nuova_richiesta_url(:id => argument.id), class: "btn btn-success richiesta" %>
+			</td>
 	      </tr>
 	  	<% end %>
  	

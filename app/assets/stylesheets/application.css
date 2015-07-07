@@ -85,3 +85,13 @@
 .btn {
   margin-bottom: 20px
 }
+
+.richiesta {
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 10px;
+padding-right: 10px;
+margin: 0px;
+font-size: 12px;
+vertical-align: top;
+}
