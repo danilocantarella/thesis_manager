@@ -77,6 +77,7 @@
 
                     <% else %>
                     <% if signed_in? %>
+                    <% @professor = current_professor %>
                     <!-- new_professor_argument_path(current_professor.id) -->
                     <li>
                         <%= link_to "Nuova tesi",  inserimento_tesi_url%>
@@ -91,6 +92,7 @@
 
 
                     <% else %> <!-- se è uno studente -->
+                    <% @student = current_student %>
                    
                         <li>
                             <%= link_to "Profilo",  profilo_studente_url%>

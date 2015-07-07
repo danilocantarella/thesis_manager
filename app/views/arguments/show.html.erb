@@ -1,20 +1,53 @@
-<h1>Listing arguments</h1>
- 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>titolo</th>
-    <th>descrizione</th>
-    
-    
-  </tr>
- 
-  <% @arguments.each do |argument| %>
-    <tr>
-      <td><%= argument.id %></td>
-      <td><%= argument.titolo %></td>
-      <td><%= argument.descrizione %></td>
-     
-      </tr>
-  <% end %>
-</table>
+  <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <% if signed_in? %>
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <div class="panel panel-info" >
+      <div class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+        <div class="panel-title">Dettagli tesi</strong></div>
+      </div> 
+
+      <div class="row">
+        <div class=" col-md-10 col-lg-10 col-md-offset-1" > 
+          <table class="table table-user-information" align="center">
+            <tbody>
+              <tr>
+                <td><strong>Titolo</strong></td>
+                <td><%= @argument.titolo %></td>
+              </tr>
+              <tr>
+                <td><strong>Descrizione</strong></td>
+                <td><%= @argument.descrizione %></td>
+              </tr>
+              <tr>
+                <td><strong>Tipologia</strong></td>
+                <td><%= @argument.tipologia %></td>
+              </tr>
+              <tr>
+                <td><strong>Interessati</strong></td>
+                <td><%= @argument.interessati %></td>
+              </tr>
+              <tr>
+                <td><strong>Stato</strong></td>
+                <td><%= @argument.stato %></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <%= link_to "Modifica", edit_tesi_url(:id => @argument.id), class: "btn btn-primary" %>
+
+          <%= link_to 'Cancella', argument_path(@argument),
+              method: :delete,
+              class: "btn btn-danger",
+              data: { confirm: 'Are you sure?' } %>
+
+        </div>
+      </div>
+    </div>
+    <div>
+
+      <% else %>
+      <div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
+      <% end %>
+    </div>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :professors do
     resources :arguments
   end
+  resources :arguments
   
   resources :sessions, only:[:new, :create, :destroy]
   resources :sessions_students, only:[:new, :create, :destroy]
@@ -27,12 +28,17 @@ Rails.application.routes.draw do
   get 'profilo_studente', to: 'students#show', as: 'profilo_studente'
   get 'edit_studente', to: 'students#edit', as: 'edit_studente'
 
+  get 'visualizza_tesi', to: 'arguments#show', as: 'visualizza_tesi'
+  get 'edit_tesi', to: 'arguments#edit', as: 'edit_tesi'
+
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'
   get '/students(.:format)' => 'students#index'
 
   #get 'professors(.:format)' => 'professors#new'
   get 'professors/:id' => 'professors#show'
+
+  get 'arguments/:id' => 'arguments#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
