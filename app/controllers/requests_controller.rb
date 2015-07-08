@@ -4,6 +4,10 @@ class RequestsController < ApplicationController
 		@requests = Request.where(student_id: current_student.id).to_a
 	end
 
+	def index
+		@arguments = Argument.where(professor_id: current_professor.id).to_a
+	end
+
 	def new
 		@student = Student.find(current_student.id)
 		@argument = Argument.find(params[:id])

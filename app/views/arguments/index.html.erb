@@ -46,6 +46,8 @@
         <td style="color: green"><%= argument.stato %></td>
         <% elsif stato == "Assegnata" %>
         <td style="color: red"><%= argument.stato %></td>
+        <% elsif stato == "Completata" %>
+        <td style="color: blue"><%= argument.stato %></td>
         <% end %>
       </tr>
       <% end %>

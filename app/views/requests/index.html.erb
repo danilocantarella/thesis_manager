@@ -1,0 +1,52 @@
+	<% flash.each do |key, value| %>
+				<div style ="margin-top: -40px" class="alert alert-<%= key %>"><%= value %></div>
+				<% end %>
+
+	<div class="panel panel-info" >
+	<table class="table table-hover">
+
+	<thead>
+	        <tr class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+	          <th>ID</th>
+	          <th>Titolo tesi</th>
+	          <th>Studente</th>
+	          <th>Stato</th>
+	          <th> </th>
+	          <th> </th>
+	        </tr>
+	    </thead>
+
+	<tbody>
+		<% @arguments.each do |argument| %>
+			<% @requests = Request.where(argument_id: argument.id) %>
+			<% @requests.each do |request| %>
+
+			<% student = Student.find(request.student_id) %>
+			<% if (argument.stao == "Assegnata" || argument.stao == "Completata")%> 
+		    	<tr>
+		      	<th scope="row"><%= request.id %></th>
+		      	<td><%= argument.titolo %></td>
+		      	<td><%= student.nome %> <%= student.cognome %></td>
+		      	<td><%= argument.stato %> </td>
+		      	<td>
+		      	<% if argument.stato == "Assegnata" %>
+					<%= link_to 'Cancella', edit_request_path(:id => request.id, :mode => '3'),
+	              method: :edit,
+	              class: "btn btn-danger richiesta",
+	              data: { confirm: 'Sei sicuro?' } %>
+	              <%= link_to 'Completata', edit_request_path(:id => request.id, :mode => '4'),
+	              method: :edit,
+	              class: "btn btn-danger richiesta",
+	              data: { confirm: 'Sei sicuro?' } %>
+				<% end%>
+				</td>
+		    </tr>
+		  	<% end %>
+		  	<% end %>
+		  	<% end %>
+	  	
+	       
+	</tbody>
+
+	</table>
+	</div>
