@@ -1,7 +1,11 @@
 class RequestsController < ApplicationController
 
 	def show
-		@requests = Request.where(student_id: current_student.id).to_a
+		if signed_in?
+			@arguments = Argument.where(professor_id: current_professor.id).to_a
+		elsif signed_in_student?
+			@requests = Request.where(student_id: current_student.id).to_a
+		end
 	end
 
 	def new
@@ -31,11 +35,40 @@ class RequestsController < ApplicationController
 	def create
 	end
 
+	def edit
+		@mode = params[:mode]
+		@request = Request.find(params[:id])
+
+		if @mode == '1'
+			if @request.update(stato: "Accettata")
+				flash[:success] = "Richiesta accettata correttamente."
+				redirect_to visualizza_richieste_url
+			else
+				flash[:danger] = "Errore con la richiesta."
+				redirect_to visualizza_richieste_url
+			end
+		elsif @mode == '2'
+			if @request.update(stato: "Cancellata")
+				flash[:success] = "Richiesta cancellata correttamente."
+				redirect_to visualizza_richieste_url
+			else
+				flash[:danger] = "Errore con la richiesta."
+				redirect_to visualizza_richieste_url
+			end
+
+		end
+			
+	end
+
 	def destroy
-    @request = Request.find(params[:id])
-    @request.destroy
-    flash.now[:success] = "Cancellazione avvenuta correttamente."
-    redirect_to visualizza_richieste_url
+    	@request = Request.find(params[:id])
+    	if @request.update(stato: "Cancellata")
+				flash[:success] = "Richiesta cancellata correttamente."
+				redirect_to visualizza_richieste_url
+    	else
+				flash[:danger] = "Errore con la richiesta."
+				redirect_to visualizza_richieste_url
+			end
   end
 
 end
