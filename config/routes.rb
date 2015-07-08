@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   get 'visualizza_tesisti', to: 'requests#index', as: 'visualizza_tesisti'
 
+
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'
   get '/students(.:format)' => 'students#index'
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+  get 'visualizza_info', to: 'welcome#show', as: 'visualizza_info'
 
   #controller :sessions do
   #  get    'login'   => :new
