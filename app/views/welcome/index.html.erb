@@ -162,8 +162,8 @@
 		<% professor = Professor.find(argument.professor_id) %>
 	    <tr>
 	      <th scope="row"><%= argument.id %></th>
-	      <td><%= argument.titolo %></td>
-	      <td><%= argument.descrizione %></td>
+	      <td><%= link_to argument.titolo, visualizza_tesi_url(:id => argument.id)%></td>
+	      <td><%= argument.descrizione[0..32]%><% if argument.descrizione.length > 33 %>...<%end%></td>
 	      <td><%= argument.tipologia %></td>
 	      <td><%= argument.interessati %></td>
 	      <td><%= professor.nome %> <%= professor.cognome %></td>

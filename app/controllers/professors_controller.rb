@@ -4,9 +4,15 @@ class ProfessorsController < ApplicationController
 	end
 
 	def show
-		if signed_in?
-			@professor = Professor.find(current_professor.id)
+		id = params[:id]
+		if (id.nil?)
+			if(signed_in?)
+				@professor = Professor.find(current_professor.id)
+			end
+		else
+			@professor = Professor.find(params[:id])
 		end
+		
 	end
 	
 	def new
@@ -44,6 +50,6 @@ class ProfessorsController < ApplicationController
 	private
 	  ## Strong Parameters 
 	  def professor_params
-	    params.require(:professor).permit(:nome, :cognome, :email, :password, :password_confirmation, :ufficio)
+	    params.require(:professor).permit(:nome, :cognome, :email, :password, :password_confirmation, :ufficio, :telefono)
 	  end
 end
