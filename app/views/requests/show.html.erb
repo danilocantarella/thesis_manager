@@ -1,44 +1,173 @@
 <% flash.each do |key, value| %>
-			<div style ="margin-top: -40px" class="alert alert-<%= key %>"><%= value %></div>
-			<% end %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 
-<div class="panel panel-info" >
-<table class="table table-hover">
+<% if !signed_in_student? && !signed_in? %>
 
-<thead>
-        <tr class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
-          <th>ID</th>
-          <th>Titolo tesi</th>
-          <th>Relatore</th>
-          <th>Stato</th>
-          <th> </th>
-        </tr>
-    </thead>
+<div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
 
-<tbody>
+<% else %>
+
+	<% if signed_in? %>
+	<div class="panel panel-info" >
+		<table class="table table-hover">
+
+			<thead>
+				<tr class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+					<th>ID</th>
+					<th>Titolo tesi</th>
+					<th>Studente</th>
+					<th>Stato</th>
+					<th> </th>
+					<th> </th>
+				</tr>
+			</thead>
+
+			<tbody>
+		<% @arguments.each do |argument| %>
+
+			<% @requests = Request.where(argument_id: argument.id) %>
+			<% @requests.each do |request| %>
+				<% student = Student.find(request.student_id) %>
+				<tr>
+					<th scope="row"><%= request.id %></th>
+					<td><%= argument.titolo %></td>
+					<td><%= student.nome %> <%= student.cognome %></td>
+					<% if request.stato == "In attesa" %>
+						<td style="color: orange"><%= request.stato %> </td>
+					<% end %>
+					<% if request.stato == "Accettata" %>
+						<td style="color: green"><%= request.stato %> </td>
+					<% end %>
+					<% if request.stato == "Cancellata" %>
+						<td style="color: red"><%= request.stato %> </td>
+					<% end %>
+					<td>
+						<% if request.stato == "In attesa" %>
+						<%= link_to "Accetta", edit_request_path(:id => request.id, :mode => '1'), class: "btn btn-success richiesta" %>
+						<% end %>
+					</td>
+					<td>
+						<% if request.stato == "In attesa" %>
+						<%= link_to 'Cancella', edit_request_path(:id => request.id, :mode => '2'),
+						class: "btn btn-danger richiesta",
+							data: { confirm: 'Sei sicuro?' } %>
+							<% end %>
+						</td>
+					</tr>
+
+			<%end%>
+
+		<% end %>
+
+		</tbody>
+
+			</table>
+		</div>
+
+	<% elsif signed_in_student? %>
+
+	<% prima_riga = true %>
+
+	<div class="panel panel-info" >
+		<table class="table table-hover">
+
+			
 
 
-		<% @requests.each do |request| %>
-		<% argument = Argument.find(request.argument_id) %>
-		<% professor = Professor.find(argument.professor_id) %>
-	    <tr>
-	      <th scope="row"><%= request.id %></th>
-	      <td><%= argument.titolo %></td>
-	      <td><%= professor.nome %> <%= professor.cognome %></td>
-	      <td><%= request.stato %> </td>
-	      <td>
-	      <% if request.stato == "In attesa" %>
-				<%= link_to 'Cancella', request_path(request),
-              method: :delete,
-              class: "btn btn-danger richiesta",
-              data: { confirm: 'Sei sicuro?' } %>
+				<% @requests.each do |request| %>
+				<% if request.stato == "Accettata" %>
+					<% if prima_riga == true %>
+
+						<thead>
+						<tr class="panel-heading" style="color:#FFFFFF; background-color: green; border-color: #04779b;">
+							<th>ID</th>
+							<th>Titolo tesi</th>
+							<th>Descrizione</th>
+							<th>Relatore</th>
+							<th>Stato</th>
+						</tr>
+						</thead>
+
+						<tbody>
+
+							<% prima_riga = false %>
+
+					<% end %>
+					<% argument = Argument.find(request.argument_id) %>
+					<% professor = Professor.find(argument.professor_id) %>
+					<tr>
+						<th scope="row"><%= request.id %></th>
+						<td><%= argument.titolo %></td>
+						<td><%= argument.descrizione %></td>
+						<td><%= professor.nome %> <%= professor.cognome %></td>
+						<% if argument.stato == "Assegnata" %>
+							<td style="color: orange"><%= argument.stato %> </td>
+						<% end %>
+					<% if argument.stato == "Completata" %>
+						<td style="color: green"><%= argument.stato %> </td>
+					<% end %>
+					</tr>
 				<% end %>
-			</td>
-	    </tr>
-	  	<% end %>
- 	
-       
-      </tbody>
+				<% end %>
 
-      </table>
-  </div>
+
+			</tbody>
+
+		</table>
+	</div>
+
+
+	<div class="panel panel-info" >
+		<table class="table table-hover">
+
+			<thead>
+				<tr class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
+					<th>ID</th>
+					<th>Titolo tesi</th>
+					<th>Relatore</th>
+					<th>Stato</th>
+					<th> </th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+
+				<% @requests.each do |request| %>
+				<% argument = Argument.find(request.argument_id) %>
+				<% professor = Professor.find(argument.professor_id) %>
+				<tr>
+					<th scope="row"><%= request.id %></th>
+					<td><%= argument.titolo %></td>
+					<td><%= professor.nome %> <%= professor.cognome %></td>
+					<% if request.stato == "In attesa" %>
+						<td style="color: orange"><%= request.stato %> </td>
+					<% end %>
+					<% if request.stato == "Accettata" %>
+						<td style="color: green"><%= request.stato %> </td>
+					<% end %>
+					<% if request.stato == "Cancellata" %>
+						<td style="color: red"><%= request.stato %> </td>
+					<% end %>
+					<td>
+						<% if request.stato == "In attesa" %>
+						<%= link_to 'Cancella', request_path(request),
+						method: :delete,
+						class: "btn btn-danger richiesta",
+							data: { confirm: 'Sei sicuro?' } %>
+							<% end %>
+						</td>
+					</tr>
+					<% end %>
+
+
+				</tbody>
+
+			</table>
+		</div>
+
+
+		<% end %>
+
+<% end %>
