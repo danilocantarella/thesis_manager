@@ -4,8 +4,16 @@ class StudentsController < ApplicationController
 	end
 
 	def show
-    	@student = Student.find(current_student.id)
-  	end
+    id = params[:id]
+    if (id.nil?)
+      if(signed_in_student?)
+        @student = Student.find(current_student.id)
+      end
+    else
+      @student = Student.find(params[:id])
+    end
+    
+  end
 
 	def new
 		@student = Student.new
