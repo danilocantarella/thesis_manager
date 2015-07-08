@@ -18,6 +18,11 @@ class Professor < ActiveRecord::Base
 			  :confirmation 			=> 	true,
 			  :length					=>	{:within => 6..40}
 
+	validates :telefono,    :presence   =>  true,
+	  		  :length 					=>	{:within => 6..15}
+
+	validates :ufficio, 	:presence   => true
+
 	before_save :encrypt_password
 
 	def has_password?(submitted_password)

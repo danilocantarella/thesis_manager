@@ -31,6 +31,11 @@
 				</div>
 
 				<div style="margin-bottom: 25px" class="input-group">
+			          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+			          <%= f.text_field :telefono, class: 'form-control', :placeholder => "telefono", :required => true %>                                        
+			       </div>
+
+				<div style="margin-bottom: 25px" class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 					<%= f.email_field :email, class: 'form-control', :placeholder => "email", :required => true %>                                        
 				</div>

@@ -1,5 +1,4 @@
   <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    <% if signed_in? %>
     <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
@@ -28,12 +27,30 @@
                 <td><strong>Interessati</strong></td>
                 <td><%= @argument.interessati %></td>
               </tr>
+               <tr>
+                <td><strong>Professore</strong></td>
+                <td>
+                  <% prof = Professor.find(@argument.professor_id) %>
+                  <%= link_to "#{prof.nome} #{prof.cognome}", profilo_professore_url(id: prof.id) %>
+                  
+                  
+                </td>
+              </tr>
               <tr>
                 <td><strong>Stato</strong></td>
-                <td><%= @argument.stato %></td>
+                <% stato = @argument.stato %>
+                  <% if stato == "Libera" %>
+                <td style="color: green"><%= @argument.stato %></td>
+                 <% elsif stato == "Assegnata" %>
+                  <td style="color: orange"><%= @argument.stato %></td>
+                  <% elsif stato == "Completata"%>
+                  <td style="color: red"><%= @argument.stato %></td>
+                  <%end%>
               </tr>
             </tbody>
           </table>
+
+          <% if signed_in? && @argument.professor_id == current_professor.id %>
 
           <%= link_to "Modifica", edit_tesi_url(:id => @argument.id), class: "btn btn-primary" %>
 
@@ -42,12 +59,17 @@
               class: "btn btn-danger",
               data: { confirm: 'Sei sicuro?' } %>
 
+          <% elsif signed_in_student? %>
+
+          <% if stato == "Libera" %>
+            <%= link_to "Richiedi", nuova_richiesta_url(:id => @argument.id), class: "btn btn-success" %>
+          <% end %>
+
+          <% end %>
+
         </div>
       </div>
     </div>
     <div>
 
-      <% else %>
-      <div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
-      <% end %>
     </div>

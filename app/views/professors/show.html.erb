@@ -1,5 +1,4 @@
 	<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-		<% if signed_in? %>
 		<% flash.each do |key, value| %>
 		<div class="alert alert-<%= key %>"><%= value %></div>
 		<% end %>
@@ -25,20 +24,25 @@
 								<td><%= @professor.ufficio %></td>
 							</tr>
 							<tr>
+								<td><strong>Telefono</strong></td>
+								<td><%= @professor.telefono %></td>
+							</tr>
+							<tr>
 								<td><strong>Email</strong></td>
 								<td><a href=mailto:<%= @professor.email %>><%= @professor.email %></a></td>
 							</tr>
 						</tbody>
 					</table>
 
+					<% if signed_in? && @professor.id == current_professor.id %>
+
 					<%= link_to "Edit", edit_professore_url, class: "btn btn-primary" %>
+
+					<% end %>
+						
 
 				</div>
 			</div>
 		</div>
 		<div>
-
-			<% else %>
-			<div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
-			<% end %>
-		</div>
+	</div>

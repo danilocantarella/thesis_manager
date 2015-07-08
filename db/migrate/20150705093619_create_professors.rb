@@ -7,6 +7,7 @@ class CreateProfessors < ActiveRecord::Migration
       t.string :encrypted_password
       t.string :salt
       t.string :ufficio
+      t.string :telefono
 
       t.timestamps
     end
