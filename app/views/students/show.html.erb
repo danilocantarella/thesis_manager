@@ -1,8 +1,8 @@
 	<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-	<% if signed_in_student? %>
+	  
 	  <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
+  	<% end %>
 		<div class="panel panel-info" >
 						<div class="panel-heading" style="color:#FFFFFF; background-color: #337ab7; border-color: #04779b;">
 							<div class="panel-title">Profilo Studente</strong></div>
@@ -30,15 +30,22 @@
 	                      </tr>
 	                    </tbody>
 	                  </table>
+
+	                  <% if signed_in_student? && @student.id == current_student.id%>
 	                  
 	                  <%= link_to "Edit", edit_studente_url, class: "btn btn-primary" %>
+
+	                  <% end %>
 
 	                </div>
 	              </div>
 		</div>
 	<div>
 	 
-	<% else %>
-	<%= link_to "Login", root_url, class: "btn btn-primary" %>
-	<% end %>
 </div>
+
+<% if signed_in?  || (signed_in_student? && (@student.id != current_student.id)) %>
+	                  
+	<a href="javascript:history.back()" class="btn btn-primary">Indietro</a>
+
+ <% end %>
