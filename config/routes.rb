@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'edit_tesi', to: 'arguments#edit', as: 'edit_tesi'
 
   get 'nuova_richiesta', to: 'requests#new', as: 'nuova_richiesta'
+  get 'visualizza_richieste', to: 'requests#show', as: 'visualizza_richieste'
 
   #student GET    /students/:id(.:format)      students#show
   get 'students/:id' => 'students#show' #in alternativa---> get 'students/:id', to: 'students#show'

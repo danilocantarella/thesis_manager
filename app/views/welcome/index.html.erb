@@ -149,7 +149,9 @@
           <th>Interessati</th>
           <th>Professore</th>
           <th>Stato</th>
+          <% if signed_in_student? %>
           <th></th>
+          <% end %>
         </tr>
     </thead>
 
@@ -169,11 +171,17 @@
 	      <% if stato == "Libera" %>
 			<td style="color: green"><%= argument.stato %></td>
 	     <% elsif stato == "Assegnata" %>
+	     	<td style="color: yellow"><%= argument.stato %></td>
+	     	<% elsif stato == "Completata"%>
 	     	<td style="color: red"><%= argument.stato %></td>
-	     	<% end %>
+	     	<%end%>
+	     	<% if signed_in_student? %>
 	     	<td>
+	     		<% if stato == "Libera" %>
 				<%= link_to "Richiedi", nuova_richiesta_url(:id => argument.id), class: "btn btn-success richiesta" %>
+				<% end %>
 			</td>
+			<% end %>
 	      </tr>
 	  	<% end %>
  	

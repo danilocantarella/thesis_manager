@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20150707161202) do
 
   create_table "requests", force: true do |t|
     t.string   "stato"
-    t.integer  "id_student"
-    t.integer  "id_argument"
+    t.integer  "student_id"
+    t.integer  "argument_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
