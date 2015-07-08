@@ -14,7 +14,7 @@
  *= require_self
  */
  
- *= require bootstrap.min
+ *= require bootstrap
  *= require_self
  *= require_tree .
  */
@@ -94,4 +94,46 @@ padding-right: 10px;
 margin: 0px;
 font-size: 12px;
 vertical-align: top;
+}
+
+.navbar-toggle {
+  position: relative;
+  float: right;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+  background-color: #337ab7;
+  background-image: none;
+  border: 2px solid #fff;
+  border-radius: 4px;
+}
+
+.navbar-toggle .icon-bar + .icon-bar {
+  margin-top: 4px;
+  background-color: #fff
+}
+
+.navbar-nav > li > .dropdown-menu > li >a:focus,
+.navbar-nav > li > .dropdown-menu > li >a:hover,
+.navbar-nav > li > .dropdown-menu > li >a:active{
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #337ab7;
+  color: #fff;
+}
+
+@media (max-width: 767px){
+  .navbar-nav .open .dropdown-menu>li>a{
+    color:#fff;
+  }
+
+.navbar-nav .open .dropdown-menu>li>a:hover,
+.navbar-nav .open .dropdown-menu>li>a:focus{
+  line-height: 20px;
+  background-color: #fff;
+  color:#337ab7;
+}
+
 }
