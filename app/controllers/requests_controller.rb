@@ -9,7 +9,9 @@ class RequestsController < ApplicationController
 	end
 
 	def index
-		@arguments = Argument.where(professor_id: current_professor.id).to_a
+		if signed_in?
+			@arguments = Argument.where(professor_id: current_professor.id).to_a
+		end
 	end
 
 	def new

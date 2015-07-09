@@ -19,7 +19,9 @@ class ProfessorsController < ApplicationController
 	end
 
 	def edit
-  		@professor = Professor.find(current_professor.id)
+		if signed_in?
+  			@professor = Professor.find(current_professor.id)
+  		end
   	end
 
 

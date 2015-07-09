@@ -1,3 +1,9 @@
+<% if !signed_in_student? && !signed_in? %>
+
+<div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
+
+<% else %>
+
 	<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 	  
 	  <% flash.each do |key, value| %>
@@ -49,3 +55,5 @@
 	<a href="javascript:history.back()" class="btn btn-primary">Indietro</a>
 
  <% end %>
+
+<% end %>

@@ -1,7 +1,13 @@
-<div id="signupbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+<% if !signed_in? %>
+
+<div class="alert alert-danger">Devi essere loggato come professore per visualizzare questa pagina!</div>
+
+<% else %>
+
+<div id="signupbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
   
   <% flash.each do |key, value| %>
-      <div style ="margin-top: -40px" class="alert alert-<%= key %>"><%= value %></div>
+      <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
 
   <div class="panel panel-info" >
@@ -52,3 +58,5 @@
     </div>                     
   </div>  
 </div>
+
+<% end %>

@@ -20,7 +20,9 @@ class StudentsController < ApplicationController
   	end
 
   	def edit
-  		@student = Student.find(current_student.id)
+      if signed_in_student?
+  		  @student = Student.find(current_student.id)
+      end
   	end
 
   def create

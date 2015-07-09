@@ -1,3 +1,9 @@
+<% if !signed_in? %>
+
+<div class="alert alert-danger">Devi essere loggato per visualizzare questa pagina!</div>
+
+<% else %>
+
 	<% flash.each do |key, value| %>
 				<div class="alert alert-<%= key %>"><%= value %></div>
 				<% end %>
@@ -46,3 +52,5 @@
 
 	</table>
 	</div>
+
+	<% end %>

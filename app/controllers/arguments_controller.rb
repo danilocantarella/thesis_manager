@@ -8,7 +8,9 @@ class ArgumentsController < ApplicationController
 	end
 
 	def new
-		@professor = Professor.find(current_professor.id)
+		if signed_in?
+			@professor = Professor.find(current_professor.id)
+		end
 	end
 
 	def edit

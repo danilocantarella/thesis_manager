@@ -5,10 +5,10 @@
 	<div class="col-md-10 col-md-offset-1">
 
 
-		<div id="loginbox" style="margin-top:50px;" class="mainbox">  
+		<div id="loginbox" class="mainbox">  
 
 			<% flash.each do |key, value| %>
-			<div style ="margin-top: -40px" class="alert alert-<%= key %>"><%= value %></div>
+			<div class="alert alert-<%= key %>"><%= value %></div>
 			<% end %>
 
 			<div class="panel panel-info" >
