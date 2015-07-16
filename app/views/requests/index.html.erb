@@ -28,10 +28,10 @@
 			<% @requests.each do |request| %>
 
 			<% student = Student.find(request.student_id) %>
-			<% if (argument.stato == "Assegnata" || argument.stato == "Completata")%> 
+			<% if ((argument.stato == "Assegnata" || argument.stato == "Completata") && request.stato == "Accettata")%> 
 		    	<tr>
 		      	<th scope="row"><%= request.id %></th>
-		      	<td><%= argument.titolo %></td>
+		      	<td><%= argument.descrizione[0..32]%><% if argument.descrizione.length > 33 %>...<%end%></td>
 		      	<td><%= student.nome %> <%= student.cognome %></td>
 		      	<td><%= argument.stato %> </td>
 		      	<% if argument.stato == "Assegnata" %>

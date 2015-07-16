@@ -99,7 +99,7 @@
 					<tr>
 						<th scope="row"><%= request.id %></th>
 						<td><%= argument.titolo %></td>
-						<td><%= argument.descrizione %></td>
+						<td><%= argument.descrizione[0..32]%><% if argument.descrizione.length > 33 %>...<%end%></td>
 						<td><%= professor.nome %> <%= professor.cognome %></td>
 						<% if argument.stato == "Assegnata" %>
 							<td style="color: orange"><%= argument.stato %> </td>
